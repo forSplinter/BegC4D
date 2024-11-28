@@ -4,34 +4,32 @@
 
 int main() {
   int arr[SET];
-  int i, j, temp;
-  int index = 0;
+  int *p, *q, temp;
 
-  printf("Input %d number of elements in the array :\n", SET);
-  for (i = 0; i < SET; i++)
-    scanf("%3d", &arr[i]);
+  printf("Input %d elements in the array \n", SET);
+  for (p = arr; p < arr + SET; p++)
+    scanf("%3d", p);
+  printf("The elment in the array are : \n");
+  for (p = arr; p < arr + SET; p++)
+    printf("%3d", *p);
 
-  printf("The elements in the array are : \n");
-  for (i = 0; i < SET; i++)
-    printf("% 3d", arr[i]);
-
-  printf("The array sorted are : \n");
-  for (i = 0; i < SET; i++) {
-    index = i;
-    for (j = i + 1; j < SET; j++) {
-      if (arr[j] < arr[index]) {
-        index = j;
+  printf("sorted array are :\n");
+  for (p = arr; p < arr + SET - 1; p++) {
+    int *index = p;
+    for (q = p + 1; q < arr + SET; q++) {
+      if (*q < *index) {
+        index = q;
       }
     }
-    if (index != i) {
-      temp = arr[i];
-      arr[i] = arr[index];
-      arr[index] = temp;
+    if (index != p) {
+      temp = *p;
+      *p = *index;
+      *index = temp;
     }
   }
-  for (i = 0; i < SET; i++)
-    printf("%3d", arr[i]);
+  for (p = arr; p < arr + SET; p++)
+    printf("%3d", *p);
   putchar('\n');
 
-  return (0);
+  return 0;
 }
